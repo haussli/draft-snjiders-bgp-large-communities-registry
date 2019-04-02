@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
+<!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
+<!ENTITY RFC4234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4234.xml">
+<!ENTITY nbsp    "&#160;">
+]>
+
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+
+<?rfc strict="yes" ?>
+<?rfc comments="no" ?>
+<?rfc inline="no" ?>
+<?rfc editing="no" ?>
+<?rfc toc="yes" ?>
+<?rfc tocompact="yes" ?>
+<?rfc tocdepth="3" ?>
+<?rfc symrefs="yes" ?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="no" ?>
+
+<rfc category="std"
+    ipr="trust200902"
+    docName="draft-snjiders-bgp-wk-lc-00"
+    submissionType="IETF">
+
+    <front>
+
+        <title abbrev="BGP Well-known Large Communities">
+            BGP Well-known Large Communities
+        </title>
+
+        <author fullname="Job Snijders" initials="J." surname="Snijders">
+            <organization>NTT Communications</organization>
+
+            <address>
+                <postal>
+                    <street>Theodorus Majofskistraat 100</street>
+                    <code>1065 SZ</code>
+                    <city>Amsterdam</city>
+                    <country>The Netherlands</country>
+                </postal>
+                <email>job@ntt.net</email>
+            </address>
+        </author>
+
+        <date />
+        <area>Routing</area>
+        <workgroup>Global Routing Operations</workgroup>
+
+        <keyword>BGP</keyword>
+        <keyword>Prefix</keyword>
+
+        <abstract>
+            <t>
+                This document describes well-known <xref target="RFC8092">BGP Large Communities</xref> akin to those of <xref target="RFC1997">BGP Communities</xref>.
+            </t>
+        </abstract>
+        <note title="Requirements Language">
+            <t>
+                The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when, they appear in all capitals, as shown here.
+            </t>
+        </note>
+    </front>
+    <middle>
+        <section title="Introduction">
+            <t>
+                This document describes Well-known <xref target="RFC8092">BGP Large Communities</xref>.
+		Well-known <xref target="RFC1997">BGP Communities</xref> have proven utility and Well-known BGP Large Communities have supplemental benefit because their greater capacity allows for an accompanying argument, such as a <xref target="RFC6793">four-octet BGP ASN</xref>.
+            </t>
+            <t>
+		Furthermore, an IANA registry is created for these new Well-known Communities.
+            </t>
+        </section>
+        <section title="Taxonomy of Well-known BGP Large Communities">
+            <t>
+		<xref target="RFC8092">BGP Large Communities</xref> are entities of three four-octet values known as the Global Administrator, and Local Data Part 1 and 2.
+		The use of each is defined below.
+            </t>
+            <section title="Well-known Global Administrator">
+                <t>
+		The Global Administrator (GA), or namespace identifier, is the BGP Autonomous System Number (ASN) that defined the significance of the subsequent Local Data Parts.
+		Because ASN 0 is otherwise proscribed from use by <xref target="RFC7607"/> and discouraged by <xref target="RFC8092"/>, it is opportune for prescription as the Well-known Community namespace identifier in the GA field, and this document reserves it for this purpose.
+		It is also an easily typed and obvious value for operator convenience.
+		</t>
+		<t>
+		One might be inclined to suggest the use of 65535 or 4294967295 (<xref target="RFC7300"/>), which are also taboo.
+		An <xref target="RFC6996">Private Use ASN</xref> or 23456 (AS_TRANS, <xref target="RFC4893"/>) might also come to mind.
+		The authors feel that zero is more convenient than the first two and avoids conflict within an AS that might use the latter ASNs.
+		</t>
+            </section>
+	    <section title="Local Data Part 1">
+                <t>
+		This, the second field, is the Well-known community value itself.
+		In the parlance of <xref target="RFC8092"/>, it is the function by which Local Data Part 2 is evaluated.
+                </t>
+            </section>
+            <section title="Local Data Part 2">
+                <t>
+		This, the third field, is the argument of or to the Well-known Community.
+                </t>
+            </section>
+        </section>
+
+	<section title="Well-known BGP Large Communities">
+	    <t>
+		This document defines the following Well-known BGP Large Communities, further described below.
+		In all cases, the Global Administrator is zero.
+	    </t>
+            <texttable anchor="table_wellknowns" title="Well-known BGP Large Communities" style="all">
+                    <ttcol align="center" width="20%">Local Data Part 1</ttcol>
+                    <ttcol align="center" width="20%">Local Data Part 2</ttcol>
+                    <ttcol align="center">description</ttcol>
+                    <c>NNNN</c><c>MMMM</c><c>XXXX</c>
+                    <c>NNNN</c><c>MMMM</c><c>XXXX</c>
+            </texttable>
+            <section title="Examples">
+                <t>
+                </t>
+            <texttable anchor="table_wellknownexs" title="Well-known BGP Large Community Examples" style="all">
+                    <ttcol align="center" width="20%">Community</ttcol>
+                    <ttcol align="center">description</ttcol>
+                    <c>0:NNNN:MMMM</c><c>XXXX</c>
+                    <c>0:NNNN:MMMM</c><c>XXXX</c>
+            </texttable>
+            </section>
+	</section>
+
+        <section title="Applicable Uses">
+            <t>
+		Well-known BGP Large Communities are not intended to replace Well-known <xref target="RFC1997">BGP Communities</xref>, nor well-known communities of other BGP community types that may evolve.
+		Use the correct tool for the problem.
+		By example, a routing policy concept that requires an argument that can be represented in 4-octets is appropriate, while replicating the <xref target="RFC1997"/> NO_EXPORT community would not.
+            </t>
+        </section>
+
+       <section title="Security Considerations">
+           <t>
+		This document does not change any existing security issues associated with BGP Large Communities nor of other BGP Community Attributes.
+		In addition to the considerations expressed in <xref target="RFC8092"/>, an Autonomous System (AS) that accepts, sends or forwards NLRI with Well-known BGP Large Communities must itself be aware of how these communities will implicitly or explicitly affect route selection.
+            </t>
+        </section>
+
+        <section title="IANA Considerations">
+            <t>
+		IANA is requested to create a new registry for Well-known <xref target="RFC8092">BGP Large Communities</xref> by the name "BGP Well-known Large Communities".
+		The registry MUST have two fields, Local Data Part 1 and Local Data Part 2, and MUST be seeded with the values defined by this document in Table 1 of Section 3.
+            </t>
+            <t>
+		The allocation policy for new entries is first come, first served for Local Data Part 1 values of 0 through 2147483647 (0 - 0x7fffffff) and "Standards Action" for 2147483648 through 4294967295 (0x80000000 - 0xffffffff).
+            </t>
+            <t>
+		The Local Data Part 2 is an argument associated with a particular Local Data Part 1, whose value can be unspecified (any value), a single or range of values, or have an allocation policy set forth by a separate "Standards Action."
+            </t>
+            <t>
+		Allocation of a large swath of Local Data Part 1 values to a single function or concept is NOT RECOMMENDED.
+		Non-consecutive Allocation is NOT RECOMMENDED.
+            </t>
+        </section>
+<!--
+        <section title="Acknowledgments">
+            <t>
+                The author(s) would like to thank XXXXXXXX for their support, insightful review, and comments.
+            </t>
+        </section>
+ -->
+    </middle>
+    <back>
+        <references title="Normative References">
+            <?rfc include="reference.RFC.8092"?>
+            <?rfc include="reference.RFC.1997"?>
+            <?rfc include="reference.RFC.6793"?>
+            <?rfc include="reference.RFC.7607"?>
+            <?rfc include="reference.RFC.7300"?>
+            <?rfc include="reference.RFC.4893"?>
+            <?rfc include="reference.RFC.6996"?>
+            <?rfc include="reference.RFC.2119"?>
+            <?rfc include="reference.RFC.8174"?>
+        </references>
+        <references title="Informative References">
+            <?rfc include="reference.RFC.8195"?>
+        </references>
+    </back>
+</rfc>
