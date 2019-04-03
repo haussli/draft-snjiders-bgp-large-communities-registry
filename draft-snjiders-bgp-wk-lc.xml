@@ -92,7 +92,7 @@
             </section>
 	    <section title="Local Data Part 1">
                 <t>
-		This, the second field, is the Well-known community value itself.
+		This, the second field, is the Well-known Community value itself.
 		In the parlance of <xref target="RFC8092"/>, it is the function by which Local Data Part 2 is evaluated.
                 </t>
             </section>
