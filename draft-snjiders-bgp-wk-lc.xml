@@ -112,8 +112,8 @@
                     <ttcol align="center" width="20%">Local Data Part 1</ttcol>
                     <ttcol align="center" width="20%">Local Data Part 2</ttcol>
                     <ttcol align="center">description</ttcol>
-                    <c>NNNN</c><c>MMMM</c><c>XXXX</c>
-                    <c>NNNN</c><c>MMMM</c><c>XXXX</c>
+                    <c>0</c><c>ASN</c><c>no-export from AS ASN</c>
+                    <c>1</c><c>ASN</c><c>do not export to AS ASN</c>
             </texttable>
             <section title="Examples">
                 <t>
@@ -121,8 +121,8 @@
             <texttable anchor="table_wellknownexs" title="Well-known BGP Large Community Examples" style="all">
                     <ttcol align="center" width="20%">Community</ttcol>
                     <ttcol align="center">description</ttcol>
-                    <c>0:NNNN:MMMM</c><c>XXXX</c>
-                    <c>0:NNNN:MMMM</c><c>XXXX</c>
+                    <c>0:0:64496</c><c>no-export from AS 64496</c>
+                    <c>0:1:65551</c><c>do not export to AS 65551</c>
             </texttable>
             </section>
 	</section>
