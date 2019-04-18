@@ -1,4 +1,4 @@
-BASENAME=draft-snjiders-bgp-wk-lc
+BASENAME=draft-snijders-idr-wk-lc
 EXT=.xml
 VERSION=00
 SOURCENAME=${BASENAME}${EXT}
