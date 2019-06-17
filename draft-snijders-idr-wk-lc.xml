@@ -22,7 +22,7 @@
 
 <rfc category="std"
     ipr="trust200902"
-    docName="draft-snijders-idr-wk-lc"
+    docName="draft-snijders-idr-wk-lc-01"
     submissionType="IETF">
 
     <front>
@@ -42,6 +42,20 @@
                     <country>The Netherlands</country>
                 </postal>
                 <email>job@ntt.net</email>
+            </address>
+        </author>
+
+        <author fullname="Chris Morrow" initials="C." surname="Morrow">
+            <organization>Google, Inc.</organization>
+
+            <address>
+                <postal>
+                    <street>1600 Ampitheatre Parkway</street>
+                    <code>94943</code>
+                    <city>Mountain View, CA</city>
+                    <country>United States of America</country>
+                </postal>
+                <email>morrowc@google.com</email>
             </address>
         </author>
 
@@ -74,9 +88,10 @@
             <t>
               This document describes Well-known
               <xref target="RFC8092">BGP Large Communities</xref>.
+
               Well-known <xref target="RFC1997">BGP Communities</xref> have proven
               utility and Well-known BGP Large Communities have supplemental benefit
-              because their greater capacity allows for an accompanying argument,
+              due to their greater capacity , which allows for an accompanying argument,
               such as a <xref target="RFC6793">four-octet BGP ASN</xref>.
             </t>
             <t>
@@ -85,14 +100,16 @@
         </section>
         <section title="Taxonomy of Well-known BGP Large Communities">
             <t>
-              <xref target="RFC8092">BGP Large Communities</xref> are entities of three four-octet
-              values known as the Global Administrator, and Local Data Part 1 and 2.
+              <xref target="RFC8092">BGP Large Communities</xref> are entities of three,
+              four-octet values known as the Global Administrator, and Local Data
+              Part 1 and 2.
+
 		The use of each is defined below.
             </t>
             <section title="Well-known Global Administrator">
                 <t>
                   The Global Administrator (GA), or namespace identifier, is the BGP
-                  Autonomous System Number (ASN) that defined the significance of the
+                  Autonomous System Number (ASN) that has defined the significance of the
                   subsequent Local Data Parts.
 
                   Because ASN 0 is otherwise proscribed from use by <xref target="RFC7607"/>
@@ -107,8 +124,8 @@
       (<xref target="RFC7300"/>), which are also taboo.
       A <xref target="RFC6996">Private Use ASN</xref> or 23456
       (AS_TRANS, <xref target="RFC4893"/>) might also come to mind.
-      The authors feel that zero is more convenient than the first two and avoids conflict
-      within an AS that might use the latter ASNs.
+      Care should be taken in not selecting a value which may already be in use
+      in private use-cases.
 		</t>
             </section>
 	    <section title="Local Data Part 1">
@@ -120,14 +137,16 @@
             </section>
             <section title="Local Data Part 2">
                 <t>
-		This, the third field, is the argument of or to the Well-known Community.
+		This, the third field, is the argument of the Well-known Community.
                 </t>
             </section>
         </section>
 
 	<section title="Well-known BGP Large Communities">
 	    <t>
-		This document defines the following Well-known BGP Large Communities, further described below.
+        This document defines the following Well-known BGP Large Communities,
+        further described below.
+
 		In all cases, the Global Administrator is zero.
 	    </t>
             <texttable anchor="table_wellknowns" title="Well-known BGP Large Communities" style="all">
@@ -154,8 +173,8 @@
               Well-known BGP Large Communities are not intended to replace Well-known
               <xref target="RFC1997">BGP Communities</xref>, nor well-known communities
               of other BGP community types that may evolve.
-		Use the correct tool for the problem.
-    By example, a routing policy concept that requires an argument that can be
+
+    For example, a routing policy concept that requires an argument that can be
     represented in 4-octets is appropriate, while replicating the
     <xref target="RFC1997"/> NO_EXPORT community would not.
             </t>
@@ -178,7 +197,8 @@
               <xref target="RFC8092">BGP Large Communities</xref> by the name
               "BGP Well-known Large Communities".
               The registry MUST have two fields, Local Data Part 1 and Local Data Part 2,
-              and MUST be seeded with the values defined by this document in Table 1 of Section 3.
+              and MUST be seeded with the values defined by this document in
+              Table 1 of Section 3.
             </t>
             <t>
               The allocation policy for new entries is first come, first served for Local Data
